@@ -11,7 +11,7 @@
 <form action="#" th:action="@{/showFormAddInPart}" th:object="${inhousepart}" method="POST"}>
 
 <!-- Add hidden form field to handle update -->
-    <p><input type="hidden" th:field="*{id}"/></p>
+<p><input type="hidden" th:field="*{id}"/></p>
 
 <p><input type="text" th:field="*{name}" placeholder="Name" class="form-control mb-4 col-4"/></p>
 
@@ -19,9 +19,14 @@
 <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Price Error</p>
 
 <p><input type="text" path="inv" th:field="*{inv}" placeholder="Inventory" class="form-control mb-4 col-4"/></p>
-    <p th:if="${#fields.hasErrors('inv')}" th:errors="*{inv}">Inventory Error</p>
+<p th:if="${#fields.hasErrors('inv')}" th:errors="*{inv}">Inventory Error</p>
 
-    <p><input type="text" th:field="*{partId}" placeholder="Part ID" class="form-control mb-4 col-4"/></p>
+<p><input type="text" th:field="*{partId}" placeholder="Part ID" class="form-control mb-4 col-4"/></p>
+
+<p><label for="minInvInput">Minimum Allowed Inventory: </label><input id="minInvInput" path= "min" type="text" th:field="*{minInventory}" placeholder="Minimum Allowed Inventory" class="form-control mb-4 col-4"/></p>
+<p th:if="${#fields.hasErrors('minInventory')}" th:errors="*{minInventory}">Minimum Inventory Error</p>
+<p><label for="maxInvInput">Maximum Allowed Inventory: </label><input id="maxInvInput" path= "max" type="text" th:field="*{maxInventory}" placeholder="Maximum Allowed Inventory" class="form-control mb-4 col-4"/></p>
+<p th:if="${#fields.hasErrors('maxInventory')}" th:errors="*{maxInventory}">Maximum Inventory Error</p>
 
 <p><input type="submit" value="Submit" /></p>
 </form>

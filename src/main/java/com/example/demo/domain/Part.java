@@ -1,6 +1,8 @@
 package com.example.demo.domain;
 
 import com.example.demo.validators.ValidDeletePart;
+import com.example.demo.validators.ValidInventoryInRangeMax;
+import com.example.demo.validators.ValidInventoryInRangeMin;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -16,6 +18,8 @@ import java.util.Set;
  */
 @Entity
 @ValidDeletePart
+@ValidInventoryInRangeMin
+@ValidInventoryInRangeMax
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="part_type",discriminatorType = DiscriminatorType.INTEGER)
 @Table(name="Parts")
@@ -29,6 +33,9 @@ public abstract class Part implements Serializable {
     @Min(value = 0, message = "Inventory value must be positive")
     int inv;
 
+    Integer minInventory = 0;
+    Integer maxInventory = Integer.MAX_VALUE;
+
     @ManyToMany
     @JoinTable(name="product_part", joinColumns = @JoinColumn(name="part_id"),
             inverseJoinColumns=@JoinColumn(name="product_id"))
@@ -37,10 +44,20 @@ public abstract class Part implements Serializable {
     public Part() {
     }
 
+    public Part(String name, double price, int inv, int minInventory, int maxInventory) {
+        this.name = name;
+        this.price = price;
+        this.inv = inv;
+        this.minInventory = minInventory;
+        this.maxInventory = maxInventory;
+    }
+
     public Part(String name, double price, int inv) {
         this.name = name;
         this.price = price;
         this.inv = inv;
+        this.minInventory = 0;
+        this.maxInventory = Integer.MAX_VALUE;
     }
 
     public Part(long id, String name, double price, int inv) {
@@ -48,6 +65,28 @@ public abstract class Part implements Serializable {
         this.name = name;
         this.price = price;
         this.inv = inv;
+    }
+
+    public int getMaxInventory() {
+        if (this.maxInventory == null)
+            return Integer.MAX_VALUE;
+
+        return this.maxInventory;
+    }
+
+    public void setMaxInventory(int max) {
+        this.maxInventory = max;
+    }
+
+    public int getMinInventory() {
+        if (this.minInventory == null)
+            return 0;
+
+        return this.minInventory;
+    }
+
+    public void setMinInventory(int min) {
+        this.minInventory = min;
     }
 
     public long getId() {
