@@ -27,6 +27,54 @@ class PartTest {
         partIn=new InhousePart();
         partOut=new OutsourcedPart();
     }
+
+    @Test
+    void getMaxInventoryValue() {
+        int maxInventoryValue = 100;
+
+        partIn.setMaxInventory(maxInventoryValue);
+        assertEquals(partIn.getMaxInventory(), maxInventoryValue);
+
+        partOut.setMaxInventory(maxInventoryValue);
+        assertEquals(partOut.getMaxInventory(), maxInventoryValue);
+    }
+
+    @Test
+    void getMinInventoryValue() {
+        int minInventoryValue = 50;
+
+        partIn.setMinInventory(minInventoryValue);
+        assertEquals(partIn.getMinInventory(), minInventoryValue);
+
+        partOut.setMinInventory(minInventoryValue);
+        assertEquals(partOut.getMinInventory(), minInventoryValue);
+    }
+
+
+
+    @Test
+    void setMaxInventoryValue() {
+        int maxInventoryValue = 100;
+
+        partIn.setMaxInventory(maxInventoryValue);
+        assertEquals(partIn.getMaxInventory(), maxInventoryValue);
+
+        partOut.setMaxInventory(maxInventoryValue);
+        assertEquals(partOut.getMaxInventory(), maxInventoryValue);
+    }
+
+    @Test
+    void setMinInventoryValue() {
+        int minInventoryValue = 50;
+
+        partIn.setMinInventory(minInventoryValue);
+        assertEquals(partIn.getMinInventory(), minInventoryValue);
+
+        partOut.setMinInventory(minInventoryValue);
+        assertEquals(partOut.getMinInventory(), minInventoryValue);
+    }
+
+
     @Test
     void getId() {
         Long idValue=4L;
