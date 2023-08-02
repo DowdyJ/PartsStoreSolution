@@ -38,9 +38,9 @@ public class EnufMaxPartsValidator implements ConstraintValidator<ValidInventory
 
             constraintValidatorContext.disableDefaultConstraintViolation();
             constraintValidatorContext
-                    .buildConstraintViolationWithTemplate("Inventory must be at or below " + part.getMaxInventory())
-                    .addPropertyNode("maxInventory")
-                    .addConstraintViolation();
+                .buildConstraintViolationWithTemplate("Inventory must be at or below " + part.getMaxInventory())
+                .addPropertyNode("maxInventory")
+                .addConstraintViolation();
 
             return false;
         }
