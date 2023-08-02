@@ -31,14 +31,19 @@ public class EnufMinPartsValidator implements ConstraintValidator<ValidInventory
     @Override
     public boolean isValid(Part part, ConstraintValidatorContext constraintValidatorContext) {
         if(context==null) return true;
-        if(context!=null)myContext=context;
+        myContext=context;
 
-        PartService repo = myContext.getBean(PartServiceImpl.class);
 
-        if (part.getId() != 0) {
-            Part myPart = repo.findById((int) part.getId());
-            if (myPart.getInv() < myPart.getMinInventory())
-                return false;
+
+        if (part.getId() != 0 && part.getInv() < part.getMinInventory()) {
+
+            constraintValidatorContext.disableDefaultConstraintViolation();
+            constraintValidatorContext
+                    .buildConstraintViolationWithTemplate("Inventory must be at or above " + part.getMinInventory())
+                    .addPropertyNode("minInventory")
+                    .addConstraintViolation();
+
+            return false;
         }
 
         return true;

@@ -29,15 +29,20 @@ public class EnufMaxPartsValidator implements ConstraintValidator<ValidInventory
 
     @Override
     public boolean isValid(Part part, ConstraintValidatorContext constraintValidatorContext) {
-        if(context==null) return true;
-        if(context!=null)myContext=context;
+        if(context == null)
+            return true;
 
-        PartService repo = myContext.getBean(PartServiceImpl.class);
+        myContext=context;
 
-        if (part.getId() != 0) {
-            Part myPart = repo.findById((int) part.getId());
-            if (myPart.getInv() > myPart.getMaxInventory())
-                return false;
+        if (part.getId() != 0 && part.getInv() > part.getMaxInventory()) {
+
+            constraintValidatorContext.disableDefaultConstraintViolation();
+            constraintValidatorContext
+                    .buildConstraintViolationWithTemplate("Inventory must be at or below " + part.getMaxInventory())
+                    .addPropertyNode("maxInventory")
+                    .addConstraintViolation();
+
+            return false;
         }
 
         return true;
