@@ -16,7 +16,8 @@ CHANGES FOR PART C-J LISTED BELOW:
   * New file src/main/resources/templates/aboutUs.html detailing the store's info.
     <br><br>
 * Part E: *Add a sample inventory appropriate for your chosen store to the application. You should have five parts and five products in your sample inventory and should not overwrite existing data in the database.*
-  * Products and parts were added to the database using the UI. As specified in application.properties, the save location URL is spring.datasource.url=jdbc:h2:file:~/renamed-db-file-spring-boot-h2-db102
+  * Products and parts were added to the database using the UI. As specified in application.properties, the save location URL is spring.datasource.url=jdbc:h2:file:./renamed-db-file-spring-boot-h2-db102
+
     <br><br>
 * Part F: *Add a “Buy Now” button to your product list. Your “Buy Now” button must meet each of the following parameters:<br><br>
 -- The “Buy Now” button must be next to the buttons that update and delete products.<br>

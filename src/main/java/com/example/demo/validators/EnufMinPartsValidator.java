@@ -33,7 +33,7 @@ public class EnufMinPartsValidator implements ConstraintValidator<ValidInventory
         if(context==null) return true;
         myContext=context;
 
-        if (part.getId() != 0 && part.getInv() < part.getMinInventory()) {
+        if (part.getInv() < part.getMinInventory()) {
 
             constraintValidatorContext.disableDefaultConstraintViolation();
             constraintValidatorContext

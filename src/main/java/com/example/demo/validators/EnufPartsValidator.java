@@ -33,9 +33,9 @@ public class EnufPartsValidator implements ConstraintValidator<ValidEnufParts, P
         myContext=context;
 
         ProductService repo = myContext.getBean(ProductServiceImpl.class);
-
-        if (product.getId() == 0)
-            return true;
+        // No obvious reason for this to be the case. Perhaps this is intentional?
+        // if (product.getId() == 0)
+        //    return true;
 
         boolean isViolation = false;
 

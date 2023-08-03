@@ -34,7 +34,7 @@ public class EnufMaxPartsValidator implements ConstraintValidator<ValidInventory
 
         myContext=context;
 
-        if (part.getId() != 0 && part.getInv() > part.getMaxInventory()) {
+        if (part.getInv() > part.getMaxInventory()) {
 
             constraintValidatorContext.disableDefaultConstraintViolation();
             constraintValidatorContext
