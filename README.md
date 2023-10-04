@@ -1,4 +1,4 @@
-# Mock Hotel Web Service
+# Parts Store Web App
 This project is my final project submission for the Java Frameworks course at WGU. 
 
 ## Running the Solution
